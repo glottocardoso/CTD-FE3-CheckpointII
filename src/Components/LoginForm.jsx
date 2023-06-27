@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../content/auth-context";
+import api from "../services/api";
 
 const LoginForm = () => {
+/*
   const handleSubmit = (e) => {
     //Nesse handlesubmit você deverá usar o preventDefault,
     //enviar os dados do formulário e enviá-los no corpo da requisição 
@@ -10,6 +15,37 @@ const LoginForm = () => {
     //Com tudo ocorrendo corretamente, o usuário deve ser redirecionado a página principal,com react-router
     //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
   };
+  */
+  
+  const navigate = useNavigate();
+  const { saveName, saveToken } = useContext(AuthContext);
+  
+   const handleSubmit = async(e) => {
+    e.preventDefault();
+    
+    const username = e.target[0].value;
+    const password = e.target[1].value;
+    
+    //login nao pode ser menor que 5 carcteres
+    if(username.length <5){
+      alert("Verifique os seus dados para acessar a ")
+      console.error("username precisa ser maior do que 5 caracteres")
+    }else{
+      try {
+        const response = await api.post("/auth", {
+          "username": username, 
+          "password": password
+        });
+        saveName(username);
+        saveToken(response.data.token);
+        navigate("/home");
+      } catch (error) {
+        alert("Verifique os seus dados");
+        console.error("login não autorizado");
+        console.log(error);
+      }
+    }
+  }
 
   return (
     <>
@@ -33,8 +69,9 @@ const LoginForm = () => {
               type="password"
               required
             />
-            <button className="btn btn-primary" type="submit">
-              Send
+            
+            <button  className="btn btn-primary" type="submit"> 
+              Send//onSubmit={handleSubmit}
             </button>
           </form>
         </div>
