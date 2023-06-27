@@ -5,7 +5,7 @@ import api from "../services/api";
 import { DarkModeContext } from "../content/dark-mode";
 
 const DetailCard = (props) => {
-  const [darkMode] = useContext(DarkModeContext)
+  const darkMode = useContext(DarkModeContext)
   const { idDentista } = props;
   const [dentista, setDentista] = useState({});
 
@@ -22,7 +22,7 @@ const DetailCard = (props) => {
   useEffect(() => {
     getDentista();
     
-    //=>DONE Nesse useEffect, você vai fazer um fetch na api passando o 
+    // Nesse useEffect, você vai fazer um fetch na api passando o 
     //id do dentista que está vindo do react-router e carregar os dados em algum estado
   }, []);
   

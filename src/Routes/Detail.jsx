@@ -8,9 +8,8 @@ const Detail = () => {
   const { id } = useParams();
   return (
     <>
-      <Navbar/>
       <DetailCard idDentista={id}/>
-      <Footer/>
+  
     </>
   )
 }
