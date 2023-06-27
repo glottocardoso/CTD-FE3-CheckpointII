@@ -18,7 +18,7 @@ const LoginForm = () => {
   */
   
   const navigate = useNavigate();
-  const { saveName, saveToken } = useContext(AuthContext);
+  const { saveName, saveToken, saveIsLogged } = useContext(AuthContext);
   
    const handleSubmit = async(e) => {
     e.preventDefault();
@@ -38,6 +38,7 @@ const LoginForm = () => {
         });
         saveName(username);
         saveToken(response.data.token);
+        saveIsLogged(true);
         navigate("/home");
       } catch (error) {
         alert("Verifique os seus dados");

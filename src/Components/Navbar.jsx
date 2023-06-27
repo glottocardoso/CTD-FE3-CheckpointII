@@ -1,7 +1,15 @@
+import { useEffect, useContext} from "react";
 import styles from "./Navbar.module.css";
+import { AuthContext } from "../content/auth-context";
 
 const Navbar = () => {
+  const { isLogged, saveIsLogged, removeUserStorage } = useContext(AuthContext);
 
+  const logout = () => {
+    removeUserStorage()
+    saveIsLogged(false);
+  }
+ 
   return (
     <header className="sticky-top">
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
@@ -38,7 +46,18 @@ const Navbar = () => {
                   Home
                 </a>
               </li>
-              <li className={`nav-item ${styles.navBarLink}`}>
+              {isLogged ? <li className={`nav-item ${styles.navBarLink}`}>
+                {/* Se o usuário estiver logado, deverá aparecer um botão de logout
+                que vai apagar o token do localstorage.
+                Se o usuário estiver deslogado, um link fará um redirecionamento, com react-router,
+                ao formulário de login
+                O botão de logout deverá ser testado darkmode
+                se sim, btn-dark, se não, btn-light */}
+                <button className="nav-link" onClick={logout}>
+                  Logout
+                </button>
+                
+              </li> : <li className={`nav-item ${styles.navBarLink}`}>
                 {/* Se o usuário estiver logado, deverá aparecer um botão de logout
                 que vai apagar o token do localstorage.
                 Se o usuário estiver deslogado, um link fará um redirecionamento, com react-router,
@@ -48,7 +67,9 @@ const Navbar = () => {
                 <a className="nav-link" href="/login">
                   Login
                 </a>
-              </li>
+                
+              </li>}
+
               <li className={`nav-item`}>
                 {/* Ao ser clicado, esse botão mudará a aplicação para dark mode ou light mode.
                  Lembre-se de usar um estado no contexto para fazer essa alteração.
