@@ -3,6 +3,8 @@ import styles from "./Form.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../content/auth-context";
 import api from "../services/api";
+import { DarkModeContext } from "../content/dark-mode";
+
 
 const LoginForm = () => {
 /*
@@ -19,6 +21,7 @@ const LoginForm = () => {
   
   const navigate = useNavigate();
   const { saveName, saveToken, saveIsLogged } = useContext(AuthContext);
+  const darkMode = useContext(DarkModeContext);
   
    const handleSubmit = async(e) => {
     e.preventDefault();
@@ -40,6 +43,7 @@ const LoginForm = () => {
         saveToken(response.data.token);
         saveIsLogged(true);
         navigate("/home");
+        
       } catch (error) {
         alert("Verifique os seus dados");
         console.error("login não autorizado");
@@ -72,7 +76,7 @@ const LoginForm = () => {
             />
             
             <button  className="btn btn-primary" type="submit"> 
-              Send//onSubmit={handleSubmit}
+              Enviar
             </button>
           </form>
         </div>
