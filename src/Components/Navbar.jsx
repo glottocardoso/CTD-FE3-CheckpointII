@@ -1,30 +1,52 @@
-import { useEffect, useContext} from "react";
 import styles from "./Navbar.module.css";
 import { AuthContext } from "../content/auth-context";
+import { DarkModeContext } from "../content/dark-mode";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 const Navbar = () => {
   const { isLogged, saveIsLogged, removeUserStorage } = useContext(AuthContext);
-
+  
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const navigate = useNavigate();
+  
+  function tokenChecker(){
+    const token = localStorage.getItem("token");
+    if(token){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  
   const logout = () => {
     removeUserStorage()
     saveIsLogged(false);
   }
  
   return (
-    <header className="sticky-top">
+    <header className={`sticky-top`}>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm navbar-light bg-light`}
+        className={`navbar navbar-expand-sm navbar-light bg-light ${darkMode?"bg-dark":"bg-light"}`}
         aria-label="Third navbar example"
       >
-        <div className="container">
+        <div className={`container`}>
           {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
-          <a className={`navbar-brand ${styles.navbarBrand}`} href="/home">
+          
+          {tokenChecker()?
+            <Link className={`navbar-brand ${styles.navbarBrand} ${darkMode?"dark-font":""}`} to="/home">
+              DH Odonto
+            </Link>
+              : 
+            <Link className={`navbar-brand ${styles.navbarBrand} ${darkMode?"dark-font":""}`} to="/">
             DH Odonto
-          </a>
+          </Link>
+          }
           <button
-            className="navbar-toggler"
+            className={`navbar-toggler `}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarsExample03"
@@ -32,14 +54,14 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className={`navbar-toggler-icon `}></span>
           </button>
 
           <div
-            className="collapse navbar-collapse justify-content-end"
+            className={`collapse navbar-collapse justify-content-end`}
             id="navbarsExample03"
           >
-            <ul className="navbar-nav mb-2 mb-sm-0">
+            <ul className={`navbar-nav mb-2 mb-sm-0 `}>
               <li className={`nav-item ${styles.navBarLink}`}>
                 {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
                 <a className="nav-link" href="/home">
@@ -79,7 +101,7 @@ const Navbar = () => {
                   className={`btn btn-light${styles.btnStyle
                     }`}
                 >
-                  ☀ 🌙{" "}
+                  {!darkMode?"🌙":"☀"} 
                 </button>
               </li>
             </ul>
