@@ -1,8 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./ScheduleForm.module.css";
+import api from "../services/api";
 
 const ScheduleForm = () => {
+
+  const [dentistas, setDentistas] = useState([]);
+  
+  const getDentistas = async () => {
+    try {
+      const response = await api.get("/dentista");
+      setDentistas(response.data);
+    } catch (error) {
+      console.log("Erro ao procurar dentistas");
+      console.log(error);
+    }
+    
+  }
+
   useEffect(() => {
+    getDentistas();
     //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
     //e pacientes e carregar os dados em 2 estados diferentes
   }, []);

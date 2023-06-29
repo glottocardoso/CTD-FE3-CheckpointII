@@ -9,6 +9,7 @@ const Navbar = () => {
     removeUserStorage()
     saveIsLogged(false);
   }
+
  
   return (
     <header className="sticky-top">

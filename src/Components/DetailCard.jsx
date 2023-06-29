@@ -3,9 +3,12 @@ import ScheduleFormModal from "./ScheduleFormModal";
 import styles from "./DetailCard.module.css";
 import api from "../services/api";
 import { DarkModeContext } from "../content/dark-mode";
+import { AuthContext } from "../content/auth-context";
 
 const DetailCard = (props) => {
   const darkMode = useContext(DarkModeContext)
+  const {isLogged} = useContext(AuthContext)
+
   const { idDentista } = props;
   const [dentista, setDentista] = useState({});
 
@@ -49,17 +52,15 @@ const DetailCard = (props) => {
           <div className="col-sm-12 col-lg-6">
             <ul className={`list-group`}>
               <li className={`list-group-item`}>Nome: {dentista.nome}</li>
-              <li className={`list-group-item`}>
-                Sobrenome: {dentista.sobrenome}
-              </li>
-              <li className={`list-group-item`}>
-                Usuário: {dentista.usuario}
-              </li>
+              <li className={`list-group-item`}>Sobrenome: {dentista.sobrenome}</li>
+              <li className={`list-group-item`}>Usuário: {dentista.usuario}</li>
+              <li className={`list-group-item`}>Matícula: {dentista.matricula}</li>
             </ul>
             <div className={`text-center`}>
               {/* //Na linha seguinte deverá ser feito um teste se a aplicação
               // está em dark mode e deverá utilizado o css correto */}
               <button
+                disabled={!isLogged}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 className={`btn btn-light ${styles.button
@@ -67,6 +68,15 @@ const DetailCard = (props) => {
               >
                 Marcar consulta
               </button>
+              
+              {
+                !isLogged?
+                  <>
+                  <br/>
+                    <span>NOTA: Você deve estar logado</span>
+                  </>
+                :null
+              }
             </div>
           </div>
         </div>
