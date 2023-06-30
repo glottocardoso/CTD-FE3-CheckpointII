@@ -21,7 +21,7 @@ const LoginForm = () => {
   
   const navigate = useNavigate();
   const { saveName, saveToken, saveIsLogged } = useContext(AuthContext);
-  const darkMode = useContext(DarkModeContext);
+  const [darkMode] = useContext(DarkModeContext);
   
    const handleSubmit = async(e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ const LoginForm = () => {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
       <div
-        className={`text-center card container ${styles.card}`}
+        className={`text-center card container ${styles.card} ${darkMode?"dark":""}`}
       >
         <div className={`card-body ${styles.CardBody}`}>
           <form onSubmit={handleSubmit}>
@@ -66,6 +66,7 @@ const LoginForm = () => {
               placeholder="Login"
               name="login"
               required
+              
             />
             <input
               className={`form-control ${styles.inputSpacing}`}
