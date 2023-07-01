@@ -8,8 +8,8 @@ const Contact = () => {
   return (
     <>
       <div className={`full-width ${darkMode?"dark":""}`}>
-      <h1>Login</h1>
-      <LoginForm />
+        <h1>Login</h1>
+        <LoginForm />
       </div>
     </>
   );
