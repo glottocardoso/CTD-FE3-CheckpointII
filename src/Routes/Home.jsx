@@ -5,7 +5,7 @@ import { DarkModeContext } from "../content/dark-mode";
 
 const Home = () => {
   const [dentistas, setDentistas] = useState([]);
-  const darkMode = useContext(DarkModeContext);
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
   
   async function getDentistas(){
     try {
@@ -29,8 +29,8 @@ const Home = () => {
 
   return (
     <>
-      <h1 className={`${darkMode?"dark":""}`} style={{margin:0}}>Home</h1>
-      <div className={`full-width ${darkMode?"dark":""}`}>
+      <h1 className={`${darkMode?"dark":""}`} style={darkMode?{backgroundColor:"gray", margin:0}:{backgroundColor:"white", margin:0}}>Home</h1>
+      <div className={`full-width`} style={darkMode?{backgroundColor:"gray",padding:20}:{backgroundColor:"white",padding:20}}>
         <div className={`card-grid container `} >
           {
             dentistas.map((dentista) => (

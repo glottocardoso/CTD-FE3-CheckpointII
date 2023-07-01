@@ -15,9 +15,10 @@ import { DarkModeProvider } from "./content/dark-mode";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //Lembre-se de configurar suas rotas e seu contexto aqui
 root.render(
-  <AuthProvider>
-    <DarkModeProvider>
-      <BrowserRouter>
+
+  <BrowserRouter>
+      <AuthProvider>
+        <DarkModeProvider>
           <Routes>
             <Route path="/" element={<App/>}>
               <Route path="/" element={<Login />}/>
@@ -26,8 +27,9 @@ root.render(
               <Route path="/dentist/:id" element={<Detail />}/>
             </Route>
           </Routes>
-        </BrowserRouter> 
-    </DarkModeProvider>
-  </AuthProvider>
+        </DarkModeProvider>
+    </AuthProvider>
+  </BrowserRouter> 
+
    
 );

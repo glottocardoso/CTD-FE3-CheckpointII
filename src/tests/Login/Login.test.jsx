@@ -1,23 +1,27 @@
 import Login from "../../Routes/Login"
-import {render} from "../test-utils"
+import { renderContext } from "../test-utils"
 import { screen } from "@testing-library/react"
 
 describe ("<Login /> Testes do Login", () =>{
 
     test("Renderizou corretamente", ()=>{
-
-        render(
-            <Login/>
+        const contextoGlobal = { theme: "dark", data: [] }
+        renderContext(
+            <Login/>,
+            contextoGlobal
         )
     })
 
     test("Renderizou corretamente e renderizou o componente filho <LoginForm />", ()=>{
 
-        render(
-            <Login/>
+        const contextoGlobal = { theme: "dark", data: [] }
+        renderContext(
+            <Login/>,
+            contextoGlobal
         );
 
-        expect(screen.getByTestId("login-form").toBeInTheDocument());
+        expect(screen.getByTestId("form-login")).toBeInTheDocument();
 
     })
+
 })

@@ -57,7 +57,7 @@ const LoginForm = () => {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
       <div
-        data-testid="login-form"
+        data-testid="form-login"
         className={`text-center card container ${styles.card} ${darkMode?"dark":""}`}
       >
         <div className={`card-body ${styles.CardBody}`}>

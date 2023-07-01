@@ -35,11 +35,11 @@ const Navbar = () => {
         <div className={`container`}>
           {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
           {tokenChecker()?
-            <Link className={`navbar-brand ${styles.navbarBrand} ${darkMode?"dark-font":""}`} to="/home">
+            <Link className={`navbar-brand ${styles.navbarBrand} ${darkMode? styles.white:""}`} to="/home">
               DH Odonto
             </Link>
               : 
-            <Link className={`navbar-brand ${styles.navbarBrand} ${darkMode?"dark-font":""}`} to="/">
+            <Link className={`navbar-brand ${styles.navbarBrand} ${darkMode? styles.white:""}`} to="/">
             DH Odonto
             </Link>
           } 
@@ -64,7 +64,7 @@ const Navbar = () => {
                 {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
                 {tokenChecker() 
                   ? 
-                    <Link className={`nav-link ${darkMode?"dark-font":""}`} to="/home">
+                    <Link className={`nav-link ${darkMode? styles.white :""}`} to="/home">
                       Home
                     </Link>
                   : 
@@ -81,7 +81,7 @@ const Navbar = () => {
             
                 {tokenChecker() 
                   ? 
-                    <button className={`nav-link border-0 bg-transparent ${darkMode?"dark-font":""}`} onClick={() => logout()}>
+                    <button className={`nav-link border-0 bg-transparent ${darkMode? styles.white :""}`} onClick={() => logout()}>
                       Logout
                     </button>
                   : 
@@ -95,7 +95,7 @@ const Navbar = () => {
                 ao formulário de login
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
-                <a className="nav-link" href="/login">
+                <a className={`nav-link ${darkMode? styles.white :""}`} href="/login" >
                   Login
                 </a>
                 
@@ -107,6 +107,7 @@ const Navbar = () => {
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
+                  data-testid="button-darkMode"
                   className={`btn btn-light ${styles.btnStyle
                     } ${darkMode?"dark-font ":""} ${darkMode?"white":""}`}
                     onClick={()=> setDarkMode(!darkMode)}

@@ -23,7 +23,7 @@ const Card = (props) => {
           Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
           que vem da API */}
           <Link to={`/dentist/${matricula}`}>
-            <p className={`card-title ${styles.title} darkFont`}>{nome}</p>
+            <p className={`card-title ${styles.title} ${!darkMode?"darkFont":""}`}>{nome}</p>
           </Link>
           <p className={`card-text ${!darkMode?"darkFont":""}`}>{username}</p>
         </div>

@@ -2,8 +2,8 @@ import { useContext } from "react";
 import LoginForm from "../Components/LoginForm";
 import {DarkModeContext} from "../content/dark-mode"
 
-const Contact = () => {
-  const darkMode = useContext(DarkModeContext);
+const Login = () => {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
   
   return (
     <>
@@ -15,4 +15,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Login;
