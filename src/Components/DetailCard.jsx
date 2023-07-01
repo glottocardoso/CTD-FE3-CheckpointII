@@ -34,7 +34,7 @@ const DetailCard = (props) => {
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
     <>
-      <h1 className={`${darkMode?"dark":""}`} style={{margin:0}}>Detail about Dentist {dentista.nome} </h1>
+      <h1 className={`${darkMode?"dark":""}`} style={{margin:0}}> {dentista.nome} </h1>
       <div className={`full-width ${darkMode?"dark":""}`}>
         <section className={`card col-sm-12 col-lg-6 container ${darkMode?"dark":""}`}>
           {/* //Na linha seguinte deverá ser feito um teste se a aplicação
